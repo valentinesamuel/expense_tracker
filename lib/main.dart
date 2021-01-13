@@ -1,4 +1,6 @@
-import './transaction.dart';
+import 'package:expense_tracker/widgets/user_transactions.dart';
+
+import 'models/transaction.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -13,11 +15,11 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  final List<Transaction> transactions = [
-    Transaction(
-        amount: 12.99, date: DateTime.now(), id: 't1', title: 'Clothes'),
-    Transaction(amount: 19.99, date: DateTime.now(), id: 't2', title: 'Food'),
-  ];
+  final List<Transaction> transactions = [];
+  // String amountInput;
+  // String titleInput;
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -39,44 +41,7 @@ class MyHomePage extends StatelessWidget {
                 color: Colors.blue,
               ),
             ),
-            Column(
-              children: transactions.map((tx) {
-                return Card(
-                  child: Row(children: [
-                    Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.purple, width: 2),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            '\$${tx.amount}',
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.purple,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        )),
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            tx.title,
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
-                          ),
-                          Text(tx.date.toString(),
-                              style: TextStyle(color: Colors.grey))
-                        ],
-                      ),
-                    )
-                  ]),
-                  elevation: 3,
-                );
-              }).toList(),
-            )
+            UserTransactions()
           ],
         ),
       ),
