@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
-class NewTransaction extends StatefulWidget {
-  @override
-  _NewTransactionState createState() => _NewTransactionState();
-}
+class NewTransaction extends StatelessWidget {
+  final Function addTx;
 
-class _NewTransactionState extends State<NewTransaction> {
   final amountController = TextEditingController();
   final titleController = TextEditingController();
+  NewTransaction({this.addTx});
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -17,6 +15,7 @@ class _NewTransactionState extends State<NewTransaction> {
           children: [
             TextField(
               decoration: InputDecoration(labelText: 'TItle'),
+              controller: titleController,
             ),
             TextField(
               decoration: InputDecoration(labelText: 'Amount'),
@@ -24,10 +23,10 @@ class _NewTransactionState extends State<NewTransaction> {
             ),
             FlatButton(
                 color: Colors.yellow,
-                onPressed: () {
-                  print(titleController.text);
-                  print(amountController.text);
-                },
+                onPressed: () => {
+                      addTx(titleController.text,
+                          double.parse(amountController.text))
+                    },
                 child: Text(
                   'Add Transaction',
                   style: TextStyle(color: Colors.purple, fontSize: 15),

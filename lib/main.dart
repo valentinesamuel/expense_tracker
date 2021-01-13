@@ -27,8 +27,8 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Flutter App'),
       ),
-      body: Center(
-        child: Column(
+      body: SingleChildScrollView(
+                child: Column(
           children: [
             Container(
               width: double.infinity,
