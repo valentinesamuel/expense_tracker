@@ -63,9 +63,7 @@ class TransactionList extends StatelessWidget {
                     elevation: 3,
                   );
                 },
-                //     children: transactions.map((tx) {
-                // return
-                //     }).toList(),
+               
               ));
   }
 }
